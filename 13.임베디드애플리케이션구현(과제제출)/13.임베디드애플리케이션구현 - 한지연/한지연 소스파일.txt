@@ -1,5 +1,5 @@
-// C++ code
-//
+
+//한지연
 int PIN_LED = 13;
 int PIN_LED_2 = 4;
 int PIN_LED_3 = 7;
