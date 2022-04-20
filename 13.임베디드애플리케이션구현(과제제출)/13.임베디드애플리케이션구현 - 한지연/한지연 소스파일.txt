@@ -1,0 +1,66 @@
+// C++ code
+//
+int PIN_LED = 13;
+int PIN_LED_2 = 4;
+int PIN_LED_3 = 7;
+int PIN_LED_4 = 12;
+
+int PIN_TRIGER = 10;
+int PIN_ECHO = 3;
+
+void setup()
+{
+  pinMode(PIN_LED, OUTPUT);
+  pinMode(PIN_LED_2, OUTPUT);
+  pinMode(PIN_LED_3, OUTPUT);
+  pinMode(PIN_LED_4, OUTPUT);
+  pinMode(PIN_TRIGER, OUTPUT);
+  pinMode(PIN_ECHO, INPUT);
+  
+  Serial.begin(9600);
+}
+
+void loop()
+{ 
+  int distance = 0;
+  
+  digitalWrite(PIN_TRIGER, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(PIN_TRIGER, LOW);
+  
+  distance = pulseIn(PIN_ECHO, HIGH);
+  int cm = distance / 57;
+  
+  Serial.println(cm);
+  
+  if(cm > 150){
+    digitalWrite(PIN_LED, HIGH);
+  	digitalWrite(PIN_LED_2, LOW);
+    digitalWrite(PIN_LED_3, LOW);
+    digitalWrite(PIN_LED_4, LOW);
+    
+  } else if(cm <= 150 && cm > 100){
+  	digitalWrite(PIN_LED, LOW);
+  	digitalWrite(PIN_LED_2, HIGH);
+    digitalWrite(PIN_LED_3, LOW);
+    digitalWrite(PIN_LED_4, LOW);
+    
+  } else if(cm <= 100 && cm > 60){
+  	digitalWrite(PIN_LED, LOW);
+  	digitalWrite(PIN_LED_2, LOW);
+    digitalWrite(PIN_LED_3, HIGH);
+    digitalWrite(PIN_LED_4, LOW);
+    
+  }else {
+    digitalWrite(PIN_LED, LOW);
+  	digitalWrite(PIN_LED_2, LOW);
+    digitalWrite(PIN_LED_3, LOW);
+    digitalWrite(PIN_LED_4, HIGH);
+  }
+  
+}
+
+
+
+
+
